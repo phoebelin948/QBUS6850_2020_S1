@@ -92,7 +92,7 @@ def check_score_arg_names(estimator):
     
     if list(param_dict.keys())[:2] != ["X", "y"]:
         raise Exception("score parameter order incorrect, first two params must be X, y")
-    
+
     return True
 
 def check_score_return(estimator):
@@ -275,7 +275,7 @@ def check_estimator_adaboost(estimator_cls):
         check_predict_arg_names, # the only arg is X
         check_predict_return, # predict returns an ndarray
         check_score_exists, # score function defined
-        check_score_arg_names, # TODO: the first args are X and y
+        check_score_arg_names, # the first args of score are X and y
         check_score_return, # score fucntion returns a float
         
         # ADVANCED
