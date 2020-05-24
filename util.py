@@ -264,7 +264,15 @@ def check_estimator_unfitted(estimator):
     
 
 def check_estimator_adaboost(estimator_cls):
+    """
+    Runs a list of checks for rough compatibility with sklearn.
     
+    Parameters
+    ----------
+    estimator_cls : class
+        The class to check
+    
+    """
     
     check_list = [
         # BASIC
