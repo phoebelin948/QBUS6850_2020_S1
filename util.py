@@ -7,7 +7,7 @@ import sklearn
 def check_fit_exists(estimator):
     func_name = 'fit'
     # This will raise an exception if doesn't exist
-    func_callable = callable(getattr(myestimator(), f'{func_name}'))
+    func_callable = callable(getattr(estimator, f'{func_name}'))
     
     if not func_callable:
         raise Exception(f"{func_name} not callable")
@@ -16,7 +16,7 @@ def check_fit_exists(estimator):
 
 def check_fit_arg_names(estimator):
     
-    param_dict = signature(myestimator().fit).parameters
+    param_dict = signature(estimator.fit).parameters
     
     if 'X' not in param_dict and 'y' not in param_dict:
         raise Exception("fit does not have parameters 'X' and 'y'")
@@ -40,7 +40,7 @@ def check_fit_returns_self(estimator):
 def check_predict_exists(estimator):
     func_name = 'predict'
     # This will raise an exception if doesn't exist
-    func_callable = callable(getattr(myestimator(), f'{func_name}'))
+    func_callable = callable(getattr(estimator, f'{func_name}'))
     
     if not func_callable:
         raise Exception(f"{func_name} not callable")
@@ -49,7 +49,7 @@ def check_predict_exists(estimator):
 
 def check_predict_arg_names(estimator):
     
-    param_dict = signature(myestimator().predict).parameters
+    param_dict = signature(estimator.predict).parameters
     
     if 'X' not in param_dict:
         raise Exception("predict does not have parameter 'X'")
@@ -76,7 +76,7 @@ def check_predict_return(estimator):
 def check_score_exists(estimator):
     func_name = 'score'
     # This will raise an exception if doesn't exist
-    func_callable = callable(getattr(myestimator(), f'{func_name}'))
+    func_callable = callable(getattr(estimator, f'{func_name}'))
     
     if not func_callable:
         raise Exception(f"{func_name} not callable")
@@ -85,7 +85,7 @@ def check_score_exists(estimator):
 
 def check_score_arg_names(estimator):
     
-    param_dict = signature(myestimator().score).parameters
+    param_dict = signature(estimator.score).parameters
     
     if 'X' not in param_dict and 'y' not in param_dict:
         raise Exception("score does not have parameters 'X' and 'y'")
@@ -131,7 +131,7 @@ def check_get_params_exists(estimator):
     
     func_name = 'get_params'
     # This will raise an exception if doesn't exist
-    func_callable = callable(getattr(myestimator(), f'{func_name}'))
+    func_callable = callable(getattr(estimator, f'{func_name}'))
     
     if not func_callable:
         raise Exception(f"{func_name} not callable")
@@ -148,7 +148,7 @@ def check_get_params_return_type(estimator):
 
 def check_get_params_return_value(estimator):
     
-    param_dict = signature(myestimator().__init__).parameters
+    param_dict = signature(estimator.__init__).parameters
     init_keys_set = set(param_dict.keys())
     
     get_params_keys_set = set(estimator.get_params().keys())
@@ -162,7 +162,7 @@ def check_set_params_exists(estimator):
     
     func_name = 'set_params'
     # This will raise an exception if doesn't exist
-    func_callable = callable(getattr(myestimator(), f'{func_name}'))
+    func_callable = callable(getattr(estimator, f'{func_name}'))
     
     if not func_callable:
         raise Exception(f"{func_name} not callable")
@@ -171,7 +171,7 @@ def check_set_params_exists(estimator):
 
 def check_set_params_arg_type(estimator):
     
-    set_params_arg_dict = signature(myestimator().set_params).parameters
+    set_params_arg_dict = signature(estimator.set_params).parameters
     
     if 'params' not in set_params_arg_dict:
         raise Exception(f"set_params does not have a parameter called 'params'")
@@ -196,14 +196,14 @@ def check_set_params_returns_self(estimator):
 
 def check_base_estimator(estimator):
     
-    if not issubclass(type(myestimator()), sklearn.base.BaseEstimator):
+    if not issubclass(type(estimator), sklearn.base.BaseEstimator):
         raise Exception("estimator is not subclass of sklearn.base.BaseEstimator")
     
     return True
 
 def check_classifier_mixin(estimator):
     
-    if not issubclass(type(myestimator()), sklearn.base.ClassifierMixin):
+    if not issubclass(type(estimator), sklearn.base.ClassifierMixin):
         raise Exception("estimator is not subclass of sklearn.base.ClassifierMixin")
     
     return True
