@@ -65,7 +65,7 @@ def check_predict_return(estimator):
     y = np.random.randint(0, 2, 100)
     val = estimator.fit(X, y)
     
-    preds = estimator.predict(y)
+    preds = estimator.predict(X)
     
     if type(preds) != np.ndarray:
         raise Exception("predict did not return a numpy.ndarray")
@@ -102,8 +102,8 @@ def check_score_return(estimator):
     val = estimator.fit(X, y)
     
     score = estimator.score(X, y)
-    
-    if type(score) != float:
+
+    if type(score) not in [float, np.float32, np.float64]:
         raise Exception("score did not return a float")
         
     return True
@@ -224,7 +224,7 @@ def check_fit_only_2d(estimator):
 
 def check_fit_equal_n(estimator):
     X = np.random.randn(100, 1)
-    y = np.random.randn(10)
+    y = np.random.randint(0, 2, 10)
     
     try:
         val = estimator.fit(X, y)
