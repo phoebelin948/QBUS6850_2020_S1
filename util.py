@@ -29,7 +29,7 @@ def check_fit_arg_names(estimator):
 def check_fit_returns_self(estimator):
     
     X = np.random.randn(100, 10)
-    y = np.random.randn(100)
+    y = np.random.randint(0, 2, 100)
     val = estimator.fit(X, y)
     
     if val != estimator:
@@ -62,7 +62,7 @@ def check_predict_arg_names(estimator):
 def check_predict_return(estimator):
     
     X = np.random.randn(100, 10)
-    y = np.random.randn(100)
+    y = np.random.randint(0, 2, 100)
     val = estimator.fit(X, y)
     
     preds = estimator.predict(y)
@@ -98,7 +98,7 @@ def check_score_arg_names(estimator):
 def check_score_return(estimator):
     
     X = np.random.randn(100, 10)
-    y = np.random.randn(100)
+    y = np.random.randint(0, 2, 100)
     val = estimator.fit(X, y)
     
     score = estimator.score(X, y)
@@ -211,7 +211,7 @@ def check_classifier_mixin(estimator):
 def check_fit_only_2d(estimator):
     
     X = np.random.randn(100)
-    y = np.random.randn(100)
+    y = np.random.randint(0, 2, 100)
     
     try:
         val = estimator.fit(X, y)
